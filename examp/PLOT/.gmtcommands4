@@ -1,0 +1,8 @@
+# GMT common arguments shelf
+-Bf5e3a3e4:Grid value (number of pixels):
+-JM145/45/6i
+-R120./170./30./60.
+-x6.8i
+-Y3
+-jM145/45/6i
+EOF
