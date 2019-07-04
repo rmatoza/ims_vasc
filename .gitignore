@@ -1,1 +1,5 @@
 .DS_Store
+sphere_subs.o
+datetime.o
+bulltype.mod
+
