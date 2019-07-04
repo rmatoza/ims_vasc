@@ -2,4 +2,6 @@
 sphere_subs.o
 datetime.o
 bulltype.mod
+.gmtdefaults4
+.gmtcommands4
 
