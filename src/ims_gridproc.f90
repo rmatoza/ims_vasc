@@ -114,7 +114,7 @@
       iwrite = 1
       if (trim(outfile_clean) .eq. 'none') iwrite = 0
       
-      print *,'Enter # pixels threshold for detecion (e.g., 30000)'
+      print *,'Enter # pixels threshold for detection (e.g., 30000)'
       read *, pixthreshdet
       print *, pixthreshdet
       
