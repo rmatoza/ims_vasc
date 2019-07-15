@@ -56,7 +56,7 @@ cat ../OUT/OUT_ICAT/icat* | awk '{print $7, $8}' | gmt psxy -: -Sc0.3 -W1.5p,255
 # create GMT .grd file
 awk '{print $1, $2, $4}' grid_proc.txt | gmt xyz2grd -: -V $XYRANGE -I0.1 -Ggrid_clean.grd
 gmt grdimage grid_clean.grd $PROJ $XYRANGE -Cfnpix.cpt -E300 -P -V -O -K -X6.8i >> $psfile
-gmt psbasemap -BNseW+t"During grid G@+d@+" -Bxf5a10 -Byf4a8 $PROJ -R -V -O -K >> $psfile
+gmt psbasemap -BNseW+t"Cleaned grid G@+c@+" -Bxf5a10 -Byf4a8 $PROJ -R -V -O -K >> $psfile
 gmt psbasemap -Lg165/34+c34+w250 --FONT_ANNOT_PRIMARY=255/255/255 $PROJ -R -V -O -K >> $psfile
 gmt psscale -Dx4i/-0.2i+w2i/0.125i+h -Cfnpix.cpt -Bf5e3a3e4+l"Grid value (number of pixels)" --FONT_ANNOT_PRIMARY=11p --MAP_ANNOT_OFFSET_PRIMARY=0.4c --MAP_TICK_PEN=0/0/0 -O -K >> $psfile
 gmt psxy coastline-50m.dat $XYRANGE $PROJ -W1p,255/255/255  -O -K >> $psfile
