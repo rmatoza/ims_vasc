@@ -193,7 +193,7 @@
 
       print *,'Enter station list file'
       read (*,'(a)') stafile
-      print *, 'Reading: ', trim(stafile)
+      print *, 'Reading: ', adjustl(trim(stafile))
       open (11,file=stafile,status='old')
 	  
       ! Read the station file
@@ -205,7 +205,7 @@
           if (ios < 0) then
              exit
           else if (ios > 0) then
-             print *, '***ERROR, read error on line: ', i, trim(stafile)
+             print *, '***ERROR, read error on line: ', i, adjustl(trim(stafile))
              stop
           endif
       enddo
@@ -250,7 +250,7 @@
 	  
       print *,'Enter bulletin list file'
       read (*,'(a)') bulllistfile
-      print *, 'Reading: ', trim(bulllistfile)
+      print *, 'Reading: ', adjustl(trim(bulllistfile))
       open (11,file=bulllistfile,status='old')
 	  
       ! Read the bulletin list file
@@ -262,10 +262,10 @@
           if (ios < 0) then
              exit
           else if (ios > 0) then
-             print *, '***ERROR, read error on line: ', i, trim(bulllistfile)
+             print *, '***ERROR, read error on line: ', i, adjustl(trim(bulllistfile))
              stop
           endif
-          bullfile(i) = trim(bullfile(i))
+          bullfile(i) = adjustl(trim(bullfile(i)))
           if (stname(i) .ne. stbullfile(i)) then
              print *, '**ERROR: station coordinates and bulletin file orders do not match: ', stname(i), '  ', stbullfile(i)
              stop
@@ -306,9 +306,9 @@
       
       ! Read the bulletin files
       do j = 1,nbullfile
-         print *, 'READING: ', trim(bullfile(j))
+         print *, 'READING: ', adjustl(trim(bullfile(j)))
          STARAW(j)%fstname = stbullfile(j)       
-         open (12,file=trim(bullfile(j)),status='old')    
+         open (12,file=adjustl(trim(bullfile(j))),status='old')    
          i = 0
          ios = 0
          do while (ios==0)	
@@ -321,7 +321,7 @@
             if (ios < 0) then
                exit
             else if (ios > 0) then
-               print *, '***ERROR, read error on line: ', i, trim(bullfile(j))
+               print *, '***ERROR, read error on line: ', i, adjustl(trim(bullfile(j)))
                stop
             endif
             CALL DT_GET_TDAY(yr, mon, dy, itday)
@@ -364,7 +364,7 @@
       
       print *,'Enter binary output filename prefix (lat, lon, G, stadet, azigap)'
       read (*,'(a)') outfile_all_pref
-      outfile_all = trim(outfile_all_pref)  // ".dat"
+      outfile_all = adjustl(trim(outfile_all_pref))  // ".dat"
       
       !*****************************************************************
       ! GRID SEARCH                                                    *
@@ -472,8 +472,8 @@
       write(6,200) waitbar(11), 100., ' % ', i-1, ' of ', nlat
 
 
-      open (13,file=trim(outfile_all),status='new', form='unformatted')
-      print *, 'Writing binary file: ', trim(outfile_all)
+      open (13,file=adjustl(trim(outfile_all)),status='new', form='unformatted')
+      print *, 'Writing binary file: ', adjustl(trim(outfile_all))
       write(13) nlat, nlon, npixcross
       write(13) latvec(1:nlat), lonvec(1:nlon)
       write(13) grid_stack(1:nlat,1:nlon)
@@ -504,7 +504,7 @@ end program ims_vasc
    integer i, j, k, icount
    
    do j=1,nbullfile
-      print *, 'FCLNDET working on: ', trim(STAIN(j)%fstname)
+      print *, 'FCLNDET working on: ', adjustl(trim(STAIN(j)%fstname))
       STAOUT(j)%fstname = STAIN(j)%fstname
       icount = 0
       do i=1,STAIN(j)%nfam
